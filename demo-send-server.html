@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JSON</h1>
+    <h2>Live server post</h2>
+
+    <input type="text" id="input_name" placeholder="Enter your Name">
+    <br><br>
+    <input type="text"id="input_phone" placeholder="Enter your Address">
+    <br><br>
+    <input type="text" id="input_email" placeholder="Enter your E-mail">
+    <br><br>
+    <button id="submit">submit</button>
+
+    <script>
+        document.getElementById("submit").addEventListener("click",function(){
+            const name = document.getElementById("input_name").value;
+            const address = document.getElementById("input_phone").value;
+            const email = document.getElementById("input_email").value;
+            
+            const submit = {title:name,body:address,body:email};
+            nowToPost(submit);
+
+        });
+
+        function nowToPost(post){
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify(post),
+            headers: {
+            "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        }
+    </script>
+</body>
+</html>
